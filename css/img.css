@@ -1,0 +1,249 @@
+.guitar{
+    position: relative;
+    display: block;
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+}
+.shadow{
+    box-shadow: -9px -2px 5px #999;  
+}
+.guitar-circle-1-shadow{
+    content: "";
+    position: absolute;
+    bottom: 75px;
+    left: 75px;
+    width: 125px;
+    height: 125px;
+    border-radius: 50% 50% 50% 50%;
+}
+.guitar-circle-2-shadow{
+    content: "";
+    position: absolute;
+    bottom: 135px;
+    left: 135px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50% 50% 50% 50%;
+}
+.guitar-circle-1{
+    content: "";
+    position: absolute;
+    bottom: 75px;
+    left: 75px;
+    width: 125px;
+    height: 125px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #fc6;
+    background: linear-gradient(170deg, #fc6 70%, #c90);
+}
+.guitar-circle-2{
+    content: "";
+    position: absolute;
+    bottom: 135px;
+    left: 135px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #fc6;
+}
+.guitar-rect-1-shadow{
+    content: "";
+    position: absolute;
+    left: 230px;
+    bottom: 215px;
+    width: 20px; 
+    height: 50px;
+    background-color: #fc3;
+    transform: skew(-45deg, 45deg);
+}
+.guitar-rect-1{
+    content: "";
+    position: absolute;
+    left: 230px;
+    bottom: 215px;
+    width: 20px; 
+    height: 50px;
+    background-color: #fc3;
+    transform: skew(-45deg, 45deg);
+}
+.guitar-top-shadow{
+    content: "";
+    position: absolute;
+    left: 267px;
+    bottom: 265px;
+    width: 33px; 
+    height: 38px;
+    transform: skew(-45deg, 45deg);
+    
+}
+.guitar-top{
+    content: "";
+    position: absolute;
+    left: 267px;
+    bottom: 265px;
+    width: 33px; 
+    height: 38px;
+    background-color: #900;
+    transform: skew(-45deg, 45deg);
+
+}
+.guitar-circle-3{
+    content: "";
+    position: absolute;
+    bottom: 169px;
+    left: 168px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #960;
+    border: solid 4px #330;
+}
+.guitar-rect-2{
+    content: "";
+    position: absolute;
+    left: 204px;
+    bottom: 106px;
+    width: 3px; 
+    height: 230px;
+    background-color: #300;
+    transform: rotate(45deg);
+}
+.guitar-rect-3{
+    content: "";
+    position: absolute;
+    left: 210px;
+    bottom: 102px;
+    width: 3px; 
+    height: 230px;
+    background-color: #300;
+    transform: rotate(45deg);
+}
+.guitar-rect-4{
+    content: "";
+    position: absolute;
+    left: 214px;
+    bottom: 96px;
+    width: 3px; 
+    height: 230px;
+    background-color: #300;
+    transform: rotate(45deg);
+}
+.guitar-rect-5{
+    content: "";
+    position: absolute;
+    left: 219px;
+    bottom: 91px;
+    width: 3px; 
+    height: 230px;
+    background-color: #300;
+    transform: rotate(45deg);
+}
+.guitar-rect-6{
+    content: "";
+    position: absolute;
+    left: 130px;
+    bottom: 110px;
+    width: 3px; 
+    height: 45px;
+    background-color: #960;
+    transform: rotate(135deg);
+}
+.guitar-polygon{
+    content: "";
+    position: absolute;
+    left: 85px;
+    bottom: 55px;
+    width: 65px; 
+    height: 130px;
+    clip-path: polygon(25% 25%, 75% 25%, 50% 50%, 75% 75%, 75% 75%, 25% 75%, 50% 50%);
+    background-color: #f00;
+    background: radial-gradient(circle, rgba(255,255,255,1) 1%, rgba(255,0,0,1) 50%);
+    transform: rotate(315deg);
+}
+.guitar-circle-4{
+    content: "";
+    position: absolute;
+    left: 264px;
+    bottom: 280px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #fc6;
+}
+.guitar-circle-5{
+    content: "";
+    position: absolute;
+    left: 285px;
+    bottom: 292px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #fc6;
+}
+.guitar-circle-6{
+    content: "";
+    position: absolute;
+    left: 280px;
+    bottom: 276px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #fc6;
+}
+.guitar-circle-7{
+    content: "";
+    position: absolute;
+    left: 300px;
+    bottom: 281px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #fc6;
+}
+.guitar-space-1{
+    content: "";
+    position: absolute;
+    left: 245px;
+    bottom: 275px;
+    width: 12px;
+    height: 16px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #999;
+    filter: blur(1.6px);
+    box-shadow: -10px -10px 5px #fff;  
+}
+.guitar-space-2{
+    content: "";
+    position: absolute;
+    left: 280px;
+    bottom: 308px;
+    width: 10px;
+    height: 16px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #999;
+    filter: blur(1.4px);
+    box-shadow: -14px 7px 5px 0.7px #fff;
+    transform: rotate(90deg);  
+}
+.guitar-space-3{
+    content: "";
+    position: absolute;
+    left: 275px;
+    bottom: 244px;
+    width: 12px;
+    height: 14px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #fff;
+    transform: rotate(90deg);
+}
+.guitar-space-4{
+    content: "";
+    position: absolute;
+    left: 311px;
+    bottom: 278px;
+    width: 12px;
+    height: 14px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: #fff; 
+}

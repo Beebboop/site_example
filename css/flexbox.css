@@ -1,0 +1,107 @@
+
+.advert {
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background-image: url('../img/Task3/avto1.jpg');
+    overflow: hidden;
+}
+
+.advert-text-active, .advert-text-hover{
+    display: none;
+}
+
+.advert:hover .advert-text-hover{
+    display: flex;
+    position: relative;
+    left: 10%;
+    top: 15%;
+    font-size: 32px;
+    color: red;
+    
+}
+
+.advert:hover .advert-text-active{
+    display: none;
+}
+.advert:active .advert-text-hover{
+    display: none;
+}
+
+.advert:active .advert-text-active{
+    display: flex;
+    position: relative;
+    left: 0%;
+    top: 10%;  
+    transform: rotate(-30deg);
+    font-size: 32px;
+    color: rgb(22,142,253);
+}
+
+.car {
+    display: none;
+}
+
+.advert:hover .car{
+    display: flex;
+    position: relative;
+    width: 289px;
+    height: 241px;
+    content: url('../img/Task3/avto2.png');
+    animation: move-car 2s linear;
+    left: 15%;
+    top: 15%;  
+}
+
+.advert:active .car{
+    display: flex;
+    position: relative;
+    width: 289px;
+    height: 241px;
+    content: url('../img/Task3/avto3.png');
+    animation: appear-car 2s linear, wash-car 1s linear infinite alternate 1s forwards;
+    left: 15%;
+    top: 15%;
+}
+
+.advert:active{
+    transform: scale(0.8);
+}
+
+@keyframes move-car {
+    from {
+        left: 30%;
+        top: 15%;
+    }
+    to {
+        left: 15%;
+        top: 15%;
+    }
+}
+
+@keyframes appear-car {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes wash-car {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-30deg);
+        
+    }
+}
+
+
+
+
+
+
