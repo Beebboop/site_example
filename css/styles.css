@@ -17,8 +17,12 @@ main{
     margin-bottom: 30px;
 }
 .container{
-    max-width: 1382px;
+    
     margin: 0.5% auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
 .wrapper {
     display: flex;
@@ -192,139 +196,6 @@ aside {
 
 
 
-.puzzle-container{
-    height: 1200px;
-    width: 1200px;
-    background-color: #1590bc;
 
-}
-
-
-
-.owl {
-	width: 480px;
-	margin:20px auto;
-  
-}
-
-
-.head {
-    position: absolute;
-	width: 400px;
-	height: 370px;
-	background-color: #171717;
-	border-radius: 50%;
-	margin: auto;
-}
-
-
-
-.ear-1{
-    position: absolute;
-	width: 0; 
-	height: 0; 
-	border-left: 90px solid transparent;  
-	border-right: 90px solid transparent; 
-	border-bottom: 160px solid #171717; 
-	font-size: 0;
-	line-height: 0;
-	float: left;
-	margin-right: 60px;
-    transform: rotate(35deg);
-}
-
-
-.ear-1:first-child {
-    transform: rotate(-35deg);
-}
-
-.ear-2{
-    position: absolute;
-	width: 0; 
-	height: 0; 
-	border-left: 90px solid transparent;  
-	border-right: 90px solid transparent; 
-	border-bottom: 160px solid #171717; 
-	font-size: 0;
-	line-height: 0;
-	float: left;
-	margin-right: 60px;
-    transform: rotate(35deg);
-}
-
-
-.ear-2:first-child {
-    transform: rotate(-35deg);
-}
-
-.eyes {
-	clear: both;
-	width: 350px;
-	position: relative;
-	top: 25px;
-	left: 53px;
-}
-
-.eye-1 {
-	width: 120px;
-	height: 120px;
-	background-color: #FFFFFF;
-	border-radius: 50%;
-	float: left;
-	
-}
-
-.eye-1:first-child {
-	margin-right: 50px;
-}
-
-.eye-2 {
-	width: 120px;
-	height: 120px;
-	background-color: #FFFFFF;
-	border-radius: 50%;
-	float: left;
-	
-}
-
-.eye-2:first-child {
-	margin-right: 50px;
-}
-
-.pupil {
-	position: relative;
-    left: 20px;
-	top:20px;
-	background-color: #000000;
-	border-radius: 50%;
-	width: 80px;
-	height: 80px;
-	animation-name: an-pupils;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate-reverse;
-
-}
-
-.pupil_ref {
-	background-color: #FFFFFF;
-	border-radius: 45%;
-	width: 30px;
-	height: 30px;
-	position: relative;
-	top: 25px;
-	left: 25px;
-
-}
-
-.nose {
-	width: 45px;
-	height: 30px;
-	clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-	background-color: #FFFFFF;
-	position: relative;
-	top: 160px;
-	left: 175px;
-}
 
 

@@ -1,0 +1,135 @@
+.puzzle-container{
+    height: 600px;
+    width: 600px;
+    background-color: #1590bc;
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
+
+.head {
+    position: absolute;
+	width: 150px;
+	height: 138.75px;
+	background-color: #171717;
+	border-radius: 50%;
+	margin: auto;
+	left: 550px;
+	top: 200px;
+}
+
+.ear-1{
+    position: absolute;
+	
+	clip-path: polygon(100% 0, 0 40%, 60% 100%);
+	background: linear-gradient(to right , #171717 80%, #FFFFFF 20%); 
+	float: left;
+	width: 56.25px; 
+	height: 56.25px; 
+    transform: rotate(270deg);
+	left: 720px;
+	top: 220px;
+}
+
+
+
+.ear-2{
+    position: absolute;
+	clip-path: polygon(0 0, 40% 100%, 100% 40%);
+	background: linear-gradient(to  left, #171717 80%, #FFFFFF 20%); 
+	float: left;
+	width: 56.25px; 
+	height: 56.25px; 
+    transform: rotate(180deg);
+	left: 570px;
+	top: 420px;
+}
+
+
+
+.eye-1 {
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	background-color: #FFFFFF;
+	border-radius: 50%;
+	float: left;
+	left: 860px;
+	top: 620px;
+	
+}
+
+.eye-1:first-child {
+	margin-right: 50px;
+}
+
+.eye-2 {
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	background-color: #FFFFFF;
+	border-radius: 50%;
+	left: 600px;
+	top: 520px;
+	
+}
+
+.eye-2:first-child {
+	margin-right: 50px;
+}
+
+.pupil {
+	position: relative;
+    left: 7.5px;
+	top: 7.5px;
+	background-color: #000000;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+
+}
+
+.pupil_ref {
+	background-color: #FFFFFF;
+	border-radius: 50%;
+	width: 11.25px;
+	height: 11.25px;
+	position: relative;
+	top: 9.375px;
+	left: 9.375px;
+
+}
+
+.nose {
+	width: 16.875px;
+	height: 11.25px;
+	clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+	background-color: #FFFFFF;
+	position: relative;
+	top: 63px;
+	left: 66px;
+}
+
+.example{
+	position: absolute;
+	width: 240px;
+	height: 210px;
+	background-image: url(../img/сова.jpg);
+	left: 200px;
+	border: 5px solid #000080;
+}
+
+@keyframes owl_eyes {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+        
+    }
+}
+
+

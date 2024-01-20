@@ -51,7 +51,7 @@
     height: 241px;
     content: url('../img/Task3/avto2.png');
     animation: move-car 2s linear;
-    left: 15%;
+    right: 15%;
     top: 15%;  
 }
 
@@ -72,11 +72,11 @@
 
 @keyframes move-car {
     from {
-        left: 30%;
+        right: 30%;
         top: 15%;
     }
     to {
-        left: 15%;
+        right: 15%;
         top: 15%;
     }
 }
@@ -105,3 +105,6 @@
 
 
 
+.small{
+    transform: scale(0.2);
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu.css">
+    <title>Игра</title>
+</head>
+<body>
+    <main>
+        <div class="table-container">
+            <h1>Рейтинг</h1>
+            <table class="rating-table">
+
+            </table>
+            <a href="./index.html"><button>Вернуться</button></a>
+        </div>
+        
+    </main>
+    <script>
+        let ratingTable = document.querySelector('.rating-table');
+        window.onload = function() {
+            ratingTable.innerHTML = '';
+            let users = [];
+            if (localStorage.length > 0) {
+                for (let i = 0; i < localStorage.length; i++) {
+                    let tempUser = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                    users.push(tempUser);
+                }
+                users.sort(function(a, b) {
+                    if (a.score < b.score) {
+                        return 1;
+                    }
+                    if (a.score > b.score) {
+                        return -1;
+                    }
+                    return 0;
+                });               
+                users.forEach(user => {
+                    let tableRow = document.createElement('tr')
+                    let userName = document.createElement('th');
+                    userName.textContent = user.name;
+                    tableRow.append(userName);
+                    let userScore = document.createElement('th');
+                    userScore.textContent = user.score;
+                    tableRow.append(userScore);
+                    ratingTable.append(tableRow);   
+                });
+            }
+        }
+    </script>
+</body>
+</html>

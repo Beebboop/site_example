@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu.css">
+    <title>Игра</title>
+</head>
+<body>
+    <main>
+        <div class="section-list">
+            <div class="first section current">
+                <form class="submit-field">
+                    <input type="text" minlength="4" placeholder="Введите имя пользователя" class="input-field">
+                    <button type="submit" class="submit-btn submit-name">Начать</button>
+                </form> 
+                <a href="./index.html"><button type="button" class="return-btn">Выход</button></a>
+            </div>
+            <div class="second section">
+                <div class="info">
+                    <h1>Для того чтобы пройти каждый из этапов нужно набрать минимум 10 баллов</h1>
+                    <button type="button" class="start">Начать</button>
+                    <a href="./index.html"><button type="button" class="exit-btn exit">Выход</button></a>
+                </div>
+                
+            </div>
+            <div class="third section">
+                <div class="info-container">
+                    <p class="p-info">Время</p>
+                    <p class="counter1 p-info"></p>
+                    <p class="p-info">Счет</p>
+                    <p class="score1 p-info">0</p>
+                </div>
+                <div class="game-field">
+                    <h1>Нажми на повернутую картинку</h1>
+                    <h1 class="res"></h1>
+                    <div class="image-list">
+                        <div class="img"></div>
+                        <div class="img"></div>
+                        <div class="img"></div>
+                        <div class="img"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="fail section">
+                <div class="info">
+                    <p class="text">Вы проиграли</p>
+                    <a href="./index.html"><button type="button" class="return-btn">Выход</button></a>
+                </div>
+            </div>
+            <div class="win-1 section">
+                <div class="info">
+                    <p class="text">Вы прошли уровень</p>
+                    <button type="button" class="next-btn-1">Следующий уровень: 2</button>
+                </div>
+            </div>
+            <div class="fourth section ">
+                <div class="info-container">
+                    <p class="p-info">Время</p>
+                    <p class="counter2 p-info"></p>
+                    <p class="p-info">Счет</p>
+                    <p class="score2 p-info">0</p>
+                    <p class="p-info">Общий счет</p>
+                    <p class="total-score p-info"></p>
+                </div>
+                <div class="game-field"> 
+                    <h1>Разделите животных на хищников и травоядных</h1>
+                    <h1 class="res"></h1>
+                    <div class="game-2-container">
+                        <div>
+                            <h1>Хищники</h1>
+                            <div id="div1" class="game-container хищники" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        </div>
+                        <div>
+                            <h1>Травоядные</h1>
+                            <div id="div2" class="game-container травоядные" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        </div>
+                    </div>
+                    <div class="image-list game2-list">
+                        <div id="drag1" class="img" draggable="true" ondragstart="drag(event)"></div>
+                        <div id="drag2" class="img" draggable="true" ondragstart="drag(event)"></div>
+                        <div id="drag3" class="img" draggable="true" ondragstart="drag(event)"></div>
+                        <div id="drag4" class="img" draggable="true" ondragstart="drag(event)"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="win-2 section">
+                <div class="info">
+                    <p class="text">Вы прошли уровень</p>
+                    <button type="button" class="next-btn-2">Следующий уровень: 3</button>
+                    <a href="./index.html"><button type="button" class="exit-btn exit">Выход</button></a>
+                </div>
+            </div>
+            <div class="fiveth section ">
+                <div class="info-container">
+                    <p class="p-info">Время</p>
+                    <p class="counter3 p-info"></p>
+                    <p class="p-info">Счет</p>
+                    <p class="score3 p-info">0</p>
+                    <p class="p-info">Общий счет</p>
+                    <p class="total-score p-info"></p>
+                </div>
+                <div class="game-field"> 
+                    <h1>Нажмите на указанное животное</h1>
+                    <h1 class="request"></h1>
+                    <div class="image-list game3-list">
+                        <div class="img"></div>
+                        <div class="img"></div>
+                        <div class="img"></div>
+                        <div class="img"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="win-3 section ">
+                <div class="info">
+                    <p class="text">Поздравляем! <br> Вы прошли все уровни</p>
+                    <p class="p-info">Ваш общий счет</p>
+                    <p class="total-score p-info"></p>
+                    <a href="./index.html"><button type="button" class="exit-btn exit">Выход</button></a>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    <script>
+        let submitName = document.querySelector('form');
+        let input = document.querySelector('input');
+        let user = {name: '', score: 0}
+        let first = document.querySelector('.first');
+        let second = document.querySelector('.second');
+        let third = document.querySelector('.third');
+        let fourth = document.querySelector('.fourth');
+        let fiveth = document.querySelector('.fiveth');
+        let fail = document.querySelector('.fail');
+        let win1 = document.querySelector('.win-1');
+        let win2 = document.querySelector('.win-2');
+        let win3 = document.querySelector('.win-3');
+        let totalScore = document.querySelectorAll('.total-score');
+        totalScore.textContent = "0";
+
+
+        submitName.addEventListener('submit', (e) => {
+            if(input.value.length == 0){
+                window.alert("Поле ввода пустое")
+                return;
+            }
+            e.preventDefault();
+            let userExist = false;
+            let userName = input.value;
+            user.name = userName;
+            for (let i = 0; i < localStorage.length; i++) {
+                let uJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                if (userName == uJson.name) {
+                    userExist = true;
+                    break;
+                }
+            }
+            if (!userExist) {
+                localStorage.setItem('user' + localStorage.length, JSON.stringify(user));
+            }
+            first.classList.toggle('current');
+            second.classList.toggle('current');
+        });
+
+        
+
+        let start = document.querySelector('.start');
+        
+        let counter;
+        let counterValue1= document.querySelector('.counter1');
+        let timeValue;
+        let min;
+        let sec;
+        
+        
+        let scoreEl1 = document.querySelector('.score1');
+        
+        start.addEventListener('click', (e) => {
+            second.classList.toggle('current');
+            third.classList.toggle('current');
+            timeValue = 60;
+            counter = setInterval(function () {
+                min = Math.floor(timeValue / 60);
+                sec = timeValue % 60;
+                if (timeValue == 0) {
+                    user.score = Number(scoreEl1.textContent);
+                    for (let i = 0; i < localStorage.length; i++) {
+                        
+                        let userJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                        if ((user.name == userJson.name) && (user.score > userJson.score)) {
+                            let key = localStorage.key(i);
+                            localStorage.removeItem(localStorage.key(i));
+                            localStorage.setItem(key, JSON.stringify(user));
+                            break;
+                        }
+                    }
+                    if (Number(scoreEl1.textContent) >= 10) {
+                        setTimeout(() => {
+                            clearInterval(counter);
+                            totalScore[0].textContent = (Number(totalScore[0].textContent) + Number(scoreEl1.textContent));
+                            third.classList.toggle('current');
+                            win1.classList.toggle('current');
+                        }, 500)
+                    }else if(Number(scoreEl1.textContent) < 10) {
+                        setTimeout(() => {
+                            clearInterval(counter);
+                            third.classList.toggle('current');
+                            fail.classList.toggle('current');
+                        }, 500)
+                    }
+                }
+                let str = '0' + min + ':';
+                str += sec >= 10 ? sec :'0'+ sec;
+                counterValue1.innerHTML = str;
+                timeValue--;
+            }, 1000)
+            getImages();
+        });
+
+        let exit = document.querySelector('.exit');
+        exit.addEventListener = ('click', (e) => {
+            clearInterval(counter);
+            if (localStorage.length > 0) {
+                for (let i = 0; i < localStorage.length; i++) {
+                    let userJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                    if ((user.name == userJson.name) && (user.score > userJson.score)) {
+                        let key = localStorage.key(i);
+                        localStorage.removeItem(localStorage.key(i));
+                        localStorage.setItem(key, JSON.stringify(user));
+                        break;
+                    }
+                }
+            }
+        });
+
+        function getRandomOrder(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        
+        let imageList = document.querySelector(".image-list");
+
+        let correctImg = getRandomInt(0,4);
+        function getImages() {
+            getRandomOrder(imageList.children);
+            for (let i = 0; i < imageList.children.length; i++){
+                imageList.children[i].style.transform = "rotate(0deg)";
+                imageList.children[i].classList.add(`image-${i+1}`);
+            }
+            let rotate = getRandomInt(1,4)*90;
+            imageList.children[correctImg].style.transform = `rotate(${rotate}deg)`;
+        }
+        function getDeg(el) {
+            let style = window.getComputedStyle(el, null);
+            let styleMatrix = style.getPropertyValue("transform");
+            if (styleMatrix == 'none') return 0;
+            let transformArr = styleMatrix.split('(')[1];
+            transformArr = transformArr.split(')')[0];
+            transformArr = transformArr.split(',');
+            transformArr = transformArr.slice(0,2);
+            let cos = transformArr[0];
+            let sin = transformArr[1];
+            let deg = Math.round(Math.asin(sin)/ Math.PI * (180));
+
+            if (cos < 0) {
+                let addDeg = 180 - Math.round(Math.asin(sin)/ Math.PI * (180));
+                deg = addDeg;
+            }
+            return deg;
+        }
+        for (let i = 0; i < imageList.children.length; i++) {
+            imageList.children[i].onclick = function () {
+                if (getDeg(imageList.children[i]) != 0) {
+                    scoreEl1.textContent = Number(scoreEl1.textContent) + 1;
+                } else {
+                    scoreEl1.textContent = Number(scoreEl1.textContent) - 1;
+                }
+                correctImg = getRandomInt(0,4);
+                setTimeout(getImages, 600);
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////
+
+        function getRandomOrder1(array) {
+            let childrenArray = Array.from(array.children);
+            childrenArray.sort(function(a, b) {
+                return Math.random() - 0.5;
+            });
+            while (array.firstChild) {
+                array.removeChild(array.firstChild);
+            }
+            childrenArray.forEach(function(child) {
+                array.appendChild(child);
+            });
+        }
+
+        function getImages1() {
+            
+            for (let i = 0; i < game2list.children.length; i++){
+                game2list.children[i].classList.add(`image-${i+1}`);
+                if(i%2==0){
+                    game2list.children[i].classList.add("травоядное")
+                } else{
+                    game2list.children[i].classList.add("хищник")
+                }
+            }
+            
+        }
+
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        let game2list = document.querySelector(".game2-list");
+        let herbivore = document.querySelector(".травоядные");
+        let carnivore = document.querySelector(".хищники");
+
+        checkCarnivore = function(tempCarnivore){
+            for(let i = 0; i < tempCarnivore.children.length; i++){
+                if (tempCarnivore.children[i].classList[2] != "хищник"){
+                    return false;
+                }
+                return true;
+            }
+        }
+        checkHerbivore = function(tempHerbivore){
+            for(let i = 0; i < tempHerbivore.children.length; i++){
+                if (tempHerbivore.children[i].classList[2] != "травоядное"){
+                    return false;
+                }
+                return true;
+            }
+        }
+        checkGame2list = function(tempGame2list){
+            if (tempGame2list.children.length != 0){
+                return false;
+            }
+            return true;
+        }
+
+
+        function drop(ev) {
+            ev.preventDefault();
+            let data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+            if ((checkCarnivore(carnivore))&&(checkHerbivore(herbivore))&&(checkGame2list(game2list))){
+                scoreEl2.textContent = Number(scoreEl2.textContent) + 1;
+                game2list.innerHTML += carnivore.innerHTML;
+                game2list.innerHTML += herbivore.innerHTML;
+                getRandomOrder1(game2list);
+                carnivore.innerHTML = "";
+                herbivore.innerHTML = "";
+            }
+        }
+
+        
+            
+
+        let nextBtn1 = document.querySelector(".next-btn-1");
+        let scoreEl2 = document.querySelector('.score2');
+        let counterValue2= document.querySelector('.counter2');
+        nextBtn1.addEventListener('click', (e) => {
+            scoreEl2.textContent = "0";
+            win1.classList.toggle('current');
+            fourth.classList.toggle('current');
+            timeValue = 60;
+            counter = setInterval(function () {
+                min = Math.floor(timeValue / 60);
+                sec = timeValue % 60;
+                if (timeValue == 0) {
+                    user.score += Number(scoreEl2.textContent);
+                    for (let i = 0; i < localStorage.length; i++) {
+                        
+                        let userJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                        if ((user.name == userJson.name) && (user.score > userJson.score)) {
+                            let key = localStorage.key(i);
+                            localStorage.removeItem(localStorage.key(i));
+                            localStorage.setItem(key, JSON.stringify(user));
+                            break;
+                        }
+                    }
+                    if (Number(scoreEl2.textContent) >= 10) {
+                        setTimeout(() => {
+                            clearInterval(counter);
+                            totalScore[1].textContent = (Number(totalScore[0].textContent)+Number(scoreEl2.textContent));
+                            fourth.classList.toggle('current');
+                            win2.classList.toggle('current');
+                        }, 500)
+                    }else if(Number(scoreEl2.textContent) < 10) {
+                        setTimeout(() => {
+                            clearInterval(counter);
+                            fourth.classList.toggle('current');
+                            fail.classList.toggle('current');
+                        }, 500)
+                    }
+                }
+                let str = '0' + min + ':';
+                str += sec >= 10 ? sec :'0'+ sec;
+                counterValue2.innerHTML = str;
+                timeValue--;
+            }, 1000)
+            getImages1();
+        });
+
+        //////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////
+
+        let game3list = document.querySelector(".game3-list");
+        function getImages2() {
+            for (let i = 0; i < game3list.children.length; i++){
+                game3list.children[i].classList.add(`image-${i+1}`);
+                if((i+1)==1){
+                    game3list.children[i].classList.add("animation-1");
+                    game3list.children[i].classList.add("заяц");
+                }else if((i+1)==2){
+                    game3list.children[i].classList.add("animation-2");
+                    game3list.children[i].classList.add("тигр");
+                }else if((i+1)==3){
+                    game3list.children[i].classList.add("animation-3");
+                    game3list.children[i].classList.add("корова");
+                }else if((i+1)==4){
+                    game3list.children[i].classList.add("animation-4");
+                    game3list.children[i].classList.add("волк");
+                }
+            }
+        }
+        function getAnimal() {
+            let rand = getRandomInt(0,4);
+            if(rand==0){
+                    return "заяц";
+                }else if(rand==1){
+                    return "тигр";
+                }else if(rand==2){
+                    return "корова";
+                }else if(rand==3){
+                    return "волк";
+                }
+        }
+
+        let nextBtn2 = document.querySelector(".next-btn-2");
+        let scoreEl3 = document.querySelector('.score3');
+        let counterValue3= document.querySelector('.counter3');
+        let request = document.querySelector(".request");
+        let animal = getAnimal();
+        
+        nextBtn2.addEventListener('click', (e) => {;
+            request.textContent = animal;
+            win2.classList.toggle('current');
+            fiveth.classList.toggle('current');
+            timeValue = 60;
+            counter = setInterval(function () {
+                min = Math.floor(timeValue / 60);
+                sec = timeValue % 60;
+                if (timeValue == 0) {
+                    user.score += Number(scoreEl3.textContent);
+                    for (let i = 0; i < localStorage.length; i++) {
+                        
+                        let userJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                        if ((user.name == userJson.name) && (user.score > userJson.score)) {
+                            let key = localStorage.key(i);
+                            localStorage.removeItem(localStorage.key(i));
+                            localStorage.setItem(key, JSON.stringify(user));
+                            break;
+                        }
+                    }
+                    if (Number(scoreEl3.textContent) >= 10) {
+                        setTimeout(() => {
+                            clearInterval(counter);
+                            totalScore[2].textContent = (Number(totalScore[1].textContent)+Number(scoreEl3.textContent));
+                            fiveth.classList.toggle('current');
+                            win3.classList.toggle('current');
+                        }, 500)
+                    }else if(Number(scoreEl3.textContent) < 10) {
+                        setTimeout(() => {
+                            clearInterval(counter);
+                            fiveth.classList.toggle('current');
+                            fail.classList.toggle('current');
+                        }, 500)
+                    }
+                }
+                let str = '0' + min + ':';
+                str += sec >= 10 ? sec :'0'+ sec;
+                counterValue3.innerHTML = str;
+                timeValue--;
+            }, 1000)
+            getImages2();
+        });
+        for (let i = 0; i < game3list.children.length; i++) {
+            game3list.children[i].onclick = function () {
+                if (game3list.children[i].classList[3] == animal) {
+                    scoreEl3.textContent = Number(scoreEl3.textContent) + 1;
+                } else {
+                    scoreEl3.textContent = Number(scoreEl3.textContent) - 1;
+                }
+                request.textContent = "";
+                animal = getAnimal();
+                request.textContent = animal;
+                setTimeout(getImages2, 600);
+            }
+        }
+        
+    </script>
+</body>
+</html>

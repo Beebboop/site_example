@@ -4,6 +4,7 @@
     width: 400px;
     height: 400px;
     background-color: #fff;
+    transform: scale(0.5);
 }
 .shadow{
     box-shadow: -9px -2px 5px #999;  
@@ -99,6 +100,7 @@
     background-color: #960;
     border: solid 4px #330;
 }
+
 .guitar-rect-2{
     content: "";
     position: absolute;
@@ -200,6 +202,9 @@
     height: 10px;
     border-radius: 50% 50% 50% 50%;
     background-color: #fc6;
+}
+.border{
+    border: solid 3px red;
 }
 .guitar-space-1{
     content: "";

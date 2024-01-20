@@ -6,6 +6,7 @@
     <!-- <meta http-equiv="refresh" content="0.2" /> -->
     <!-- Ссылка на файл со стилями css -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/puzzle.css">
     <title>Верстка и прототипирование сайтов: Сайт продажи мебели</title>
 </head>
 <body>
@@ -45,6 +46,7 @@
                 <div class="header-nav-el"><a class="header-nav-link text" href="./Flexbox.html">Flexbox</a></div>
                 <div class="header-nav-el"><a class="header-nav-link text" href="./DOM.html">DOM</a></div>
                 <div class="header-nav-el"><a class="header-nav-link text" href="./Puzzle.html">Puzzle</a></div>
+                <div class="header-nav-el"><a class="header-nav-link text" href="./Game/index.html">Проект</a></div>
             </nav>
         </div>
         
@@ -54,26 +56,28 @@
         <!-- Основное тело сайта -->
         <div class="main-content container">
             <div style="text-align: center; color: #fff;">Вариант 3</div>
+            
             <div class="puzzle-container">
+                <div class="example"></div>
                 <div class="owl">
                     <div class="ears">
-                            <div class="ear-1 puzzle-item"></div>
-                            <div class="ear-2 puzzle-item"></div>
+                            <div class="ear-1 puzzle-item ear" id="ear-1"></div>
+                            <div class="ear-2 puzzle-item ear" id="ear-2"></div>
                     </div>
-                    <div class="head puzzle-item">
-                        <div class="eyes">
-                            <div class="eye-1">
-                                <div class="pupil">
-                                    <div class="pupil_ref"></div>
-                                </div>
-                            </div>
-                            <div class="eye-2">
-                                <div class="pupil">
-                                    <div class="pupil_ref"></div>
-                                </div>
+                    <div class="head puzzle-item" id="head">
+                        <div class="nose"></div>
+                    </div>
+                    <div class="eyes">
+                        <div class="eye-1 puzzle-item eye" id="eye-1">
+                            <div class="pupil">
+                                <div class="pupil_ref"></div>
                             </div>
                         </div>
-                        <div class="nose"></div>
+                        <div class="eye-2 puzzle-item eye" id="eye-2">
+                            <div class="pupil">
+                                <div class="pupil_ref"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,30 +130,61 @@
     </footer>
     <script>
         let puzzleItems = document.querySelectorAll('.puzzle-item');
+        let head_1 = document.getElementById("head");
+        let eye_1 = document.getElementById('eye-1');
+        let eye_2 = document.getElementById('eye-2');
+        let ear_1 = document.getElementById('ear-1');
+        let ear_2 = document.getElementById('ear-2');
+        let field = document.querySelectorAll('.puzzle-container');
+        let fieldCanv = field[0];
+        let fieldLeft = fieldCanv.getBoundingClientRect().left;
+        let fieldRight = fieldCanv.getBoundingClientRect().right;
+        let fieldTop = fieldCanv.getBoundingClientRect().top;
+        let fieldBottom = fieldCanv.getBoundingClientRect().bottom;
 
         puzzleItems.forEach((el) => {
-            el.addEventListener("click", (e) =>{
-                rotate(e, el);
+            el.addEventListener("click", (event) =>{
+                rotate(event, el);
             });
-            el.addEventListener("mousedown", (e) =>{
+            el.addEventListener("mousedown", (event) =>{
+                getCursorPosition(el, event);
                 if(!event.shiftKey){
                     //Возвращение координат минимально возможного прямоугольника для выбранного элемента
                     let X = event.clientX - el.getBoundingClientRect().left;
                     let Y = event.clientY - el.getBoundingClientRect().top;
                     //функция обработки движения мыши определяется внутри т.к. необходимы инициализированные переменные координат
                     document.onmousemove = function (event) {
-                        el.style.left = event.pageX - X + 'px';
-                        el.style.top = event.pageY - Y + 'px';
+                        if(event.pageX - X < fieldLeft){
+                            el.style.left = fieldLeft + 'px';
+                        } else if(event.pageX > fieldRight){
+                            el.style.left = fieldRight - el.getBoundingClientRect().width + 'px';
+                        } else {
+                            el.style.left = event.pageX - X + 'px';
+                        }
+                        if(event.pageY - Y < fieldTop){
+                            el.style.top = fieldTop + 'px';
+                        } else if(event.pageY> fieldBottom){
+                            el.style.top = fieldBottom - el.getBoundingClientRect().height + 'px';
+                        } else {
+                            el.style.top = event.pageY - Y + 'px';
+                        }
+                        
                     }
                 }
             });
-            el.addEventListener("mouseup", (e) =>{
+            el.addEventListener("mouseup", (event) =>{
                 if(!event.shiftKey){
                     el.onmouseup = null;
                     document.onmousemove = null;
+                    if(checkItemField(puzzleItems)){
+                        let eyes = document.querySelectorAll('.eye');
+                        eyes.forEach((e) => {
+                            e.style.animation = 'owl_eyes 1s linear infinite alternate 1s forwards';
+                        })
+                    };
                 }
             });
-            el.addEventListener("dragstart", (e) =>{
+            el.addEventListener("dragstart", (event) =>{
                 if(!event.shiftKey){
                     return false;
                 }
@@ -159,7 +194,7 @@
         
 
         function rotate(event, el) {
-            if (event.shiftKey){
+            if (event.shiftKey && el.classList[2]=="ear"){
                 let deg = getDeg(el);
                 deg += 90;
                 deg = deg%360;
@@ -174,7 +209,6 @@
             let styleMatrix = style.getPropertyValue("transform");
             if (styleMatrix == 'none') return 0;
             let transformArr = styleMatrix.split('(')[1];
-            
             transformArr = transformArr.split(')')[0];
             transformArr = transformArr.split(',');
             transformArr = transformArr.slice(0,2);
@@ -191,6 +225,106 @@
                 deg = 360 + deg;
             }
             return deg;
+        }
+        function getCursorPosition(el, event) {
+            const rect = el.getBoundingClientRect()
+            const x = event.clientX - rect.left
+            const y = event.clientY - rect.top
+        }
+        
+        function checkRotation() {
+            let flag = true;
+            puzzleItems.forEach((el)=>{
+                if(!(getDeg(el)==0)){
+                    flag = false;
+                }
+            })
+            return flag;
+        }
+
+        function checkItemField(puzzles) {
+            let eye1, eye2, head, ear1, ear2 = null;
+            let temp;
+            let tempCanv;
+            puzzles.forEach((el)=>{
+                let className = el.classList[0]
+                switch (el.classList[0]){
+                    case "head":
+                        temp = document.getElementsByClassName(`head`);
+                        tempCanv = temp[0];
+                        head = tempCanv.getBoundingClientRect();
+                        break;
+                    case "eye-1":
+                        temp = document.getElementsByClassName(`${className}`);
+                        tempCanv = temp[0];
+                        eye1 = tempCanv.getBoundingClientRect();
+                        
+                        break;
+                    case "eye-2":
+                        temp = document.getElementsByClassName(`${className}`);
+                        tempCanv = temp[0];
+                        eye2 = tempCanv.getBoundingClientRect();
+                        
+                        break;
+                    case "ear-1":
+                        temp = document.getElementsByClassName(`${className}`);
+                        tempCanv = temp[0];
+                        ear1 = tempCanv.getBoundingClientRect();
+                        
+                        break;
+                    case "ear-2":
+                        temp = document.getElementsByClassName(`${className}`);
+                        tempCanv = temp[0];
+                        ear2 = tempCanv.getBoundingClientRect();
+                        
+                        break;
+                    default:
+                        break;
+                }
+            })
+            temp = document.getElementsByClassName('eye');
+                
+            if (!((eye1.top > head.top) && (eye1.left > head.left) && (eye1.bottom < head.bottom) && (eye1.right < head.right))) {
+                console.log("First fail")
+                
+                return;
+            }
+            console.log("First success")
+            if (!((eye2.top > head.top) && (eye2.left > head.left) && (eye2.bottom < head.bottom) && (eye2.right < head.right))) {
+                console.log("Second fail")
+                return;
+            }
+            console.log("Second Success")
+            if (!((eye1.top + 10 >= eye2.top) && (eye1.top - 10 <= eye2.top))) {
+                console.log("Third fail")
+                return;
+            }
+            
+            eye_1.style.left = head_1.getBoundingClientRect().left + 25 + 'px';
+            eye_1.style.top = head_1.getBoundingClientRect().top + 25 + 'px';
+
+            eye_2.style.left = head_1.getBoundingClientRect().left + 80 + 'px';
+            eye_2.style.top = head_1.getBoundingClientRect().top + 25 + 'px';
+            console.log("Third Success")
+            if (!(checkRotation())){
+                return;
+            }
+            if (!((ear1.bottom - 14 > head.top) && (ear1.left+14 < head.right) && (ear1.top - 14 < head.top) && (ear1.right > head.right))) {
+                console.log("Fourth fail")
+                return;
+            }
+            ear_1.style.left = head_1.getBoundingClientRect().left + 110 + 'px';
+            ear_1.style.top = head_1.getBoundingClientRect().top - 12 + 'px';
+            console.log("Fourth Success")
+            if (!((ear2.bottom - 14 > head.top) && (ear2.right-14 > head.left) && (ear2.top - 14 < head.top) && (ear2.left < head.left))) {
+                console.log("Fiveth fail")
+                return;
+            }
+            ear_2.style.left = head_1.getBoundingClientRect().left -15 + 'px';
+            ear_2.style.top = head_1.getBoundingClientRect().top - 12 + 'px';
+            console.log("Fiveth Success")
+            return true;
+           
         }
     </script>
 </body>
