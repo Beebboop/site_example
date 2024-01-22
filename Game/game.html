@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="style.css">
     <title>Игра</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
                 </form> 
                 <a href="./index.html"><button type="button" class="return-btn">Выход</button></a>
             </div>
-            <div class="second section">
+            <div class="second section ">
                 <div class="info">
                     <h1>Для того чтобы пройти каждый из этапов нужно набрать минимум 10 баллов</h1>
                     <button type="button" class="start">Начать</button>
@@ -39,6 +39,8 @@
                         <div class="img"></div>
                         <div class="img"></div>
                         <div class="img"></div>
+                        <div class="img"></div>
+                        <div class="img"></div>
                     </div>
                 </div>
             </div>
@@ -48,7 +50,7 @@
                     <a href="./index.html"><button type="button" class="return-btn">Выход</button></a>
                 </div>
             </div>
-            <div class="win-1 section">
+            <div class="win-1 section ">
                 <div class="info">
                     <p class="text">Вы прошли уровень</p>
                     <button type="button" class="next-btn-1">Следующий уровень: 2</button>
@@ -65,15 +67,14 @@
                 </div>
                 <div class="game-field"> 
                     <h1>Разделите животных на хищников и травоядных</h1>
-                    <h1 class="res"></h1>
                     <div class="game-2-container">
-                        <div>
-                            <h1>Хищники</h1>
-                            <div id="div1" class="game-container хищники" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="cont-center">
+                            <h1 class="first-text"></h1>
+                            <div id="div1" class="game-container left" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                         </div>
-                        <div>
-                            <h1>Травоядные</h1>
-                            <div id="div2" class="game-container травоядные" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="cont-center">
+                            <h1 class="second-text"></h1>
+                            <div id="div2" class="game-container right" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                         </div>
                     </div>
                     <div class="image-list game2-list">
@@ -81,6 +82,8 @@
                         <div id="drag2" class="img" draggable="true" ondragstart="drag(event)"></div>
                         <div id="drag3" class="img" draggable="true" ondragstart="drag(event)"></div>
                         <div id="drag4" class="img" draggable="true" ondragstart="drag(event)"></div>
+                        <div id="drag5" class="img" draggable="true" ondragstart="drag(event)"></div>
+                        <div id="drag6" class="img" draggable="true" ondragstart="drag(event)"></div>
                     </div>
                 </div>
             </div>
@@ -88,7 +91,6 @@
                 <div class="info">
                     <p class="text">Вы прошли уровень</p>
                     <button type="button" class="next-btn-2">Следующий уровень: 3</button>
-                    <a href="./index.html"><button type="button" class="exit-btn exit">Выход</button></a>
                 </div>
             </div>
             <div class="fiveth section ">
@@ -104,6 +106,8 @@
                     <h1>Нажмите на указанное животное</h1>
                     <h1 class="request"></h1>
                     <div class="image-list game3-list">
+                        <div class="img"></div>
+                        <div class="img"></div>
                         <div class="img"></div>
                         <div class="img"></div>
                         <div class="img"></div>
@@ -233,12 +237,6 @@
             }
         });
 
-        function getRandomOrder(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                let j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
 
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min) + min);
@@ -246,10 +244,9 @@
 
         
         let imageList = document.querySelector(".image-list");
-
-        let correctImg = getRandomInt(0,4);
+        let length = imageList.children.length;
+        let correctImg = getRandomInt(0,length);
         function getImages() {
-            getRandomOrder(imageList.children);
             for (let i = 0; i < imageList.children.length; i++){
                 imageList.children[i].style.transform = "rotate(0deg)";
                 imageList.children[i].classList.add(`image-${i+1}`);
@@ -282,7 +279,7 @@
                 } else {
                     scoreEl1.textContent = Number(scoreEl1.textContent) - 1;
                 }
-                correctImg = getRandomInt(0,4);
+                correctImg = getRandomInt(0,length);
                 setTimeout(getImages, 600);
             }
         }
@@ -304,17 +301,68 @@
             });
         }
 
+
+        let randomTask = getRandomInt(0, 3);
+        let left = document.querySelector(".left");
+        let right = document.querySelector(".right");
+        let firstText = document.querySelector(".first-text");
+        let secondText = document.querySelector(".second-text");
+        
         function getImages1() {
-            
             for (let i = 0; i < game2list.children.length; i++){
                 game2list.children[i].classList.add(`image-${i+1}`);
-                if(i%2==0){
-                    game2list.children[i].classList.add("травоядное")
+            }
+            game2list.children[0].classList.add("одомашненное", "травоядное", "безрогое");
+            game2list.children[1].classList.add("дикое", "хищник", "безрогое");
+            game2list.children[2].classList.add("одомашненное", "травоядное", "рогатое");
+            game2list.children[3].classList.add("дикое", "хищник", "безрогое");
+            game2list.children[4].classList.add("дикое", "травоядное", "рогатое");
+            game2list.children[5].classList.add("одомашненное", "хищник", "безрогое");
+            getTask();
+        }
+        function getTask(){
+            if(randomTask == 0){
+                firstText.textContent = "Хищники";
+                secondText.textContent = "Травоядные";
+                if (left.classList.length == 3){
+                    left.classList.replace(left.classList[2], "хищник");
                 } else{
-                    game2list.children[i].classList.add("хищник")
+                    left.classList.add("хищник");
+                }
+                if (right.classList.length == 3){
+                    right.classList.replace(right.classList[2], "травоядное");
+                } else{
+                    right.classList.add("травоядное");
+                }
+            } 
+            else if(randomTask == 1){
+                firstText.textContent = "Дикие";
+                secondText.textContent = "Одомашненные";
+                if (left.classList.length == 3){
+                    left.classList.replace(left.classList[2], "дикое");
+                } else{
+                    left.classList.add("дикое");
+                }
+                if (right.classList.length == 3){
+                    right.classList.replace(right.classList[2], "одомашненное");
+                } else{
+                    right.classList.add("одомашненное");
+                }
+            } 
+            else if(randomTask == 2){
+                firstText.textContent = "Рогатые";
+                secondText.textContent = "Безрогие";
+                if (left.classList.length == 3){
+                    left.classList.replace(left.classList[2], "рогатое");
+                } else{
+                    left.classList.add("рогатое");
+                }
+                if (right.classList.length == 3){
+                    right.classList.replace(right.classList[2], "безрогое");
+                } else{
+                    right.classList.add("безрогое");
                 }
             }
-            
         }
 
 
@@ -327,20 +375,20 @@
         }
 
         let game2list = document.querySelector(".game2-list");
-        let herbivore = document.querySelector(".травоядные");
-        let carnivore = document.querySelector(".хищники");
+        
+        
 
-        checkCarnivore = function(tempCarnivore){
-            for(let i = 0; i < tempCarnivore.children.length; i++){
-                if (tempCarnivore.children[i].classList[2] != "хищник"){
+        checkLeft = function(tempLeft){
+            for(let i = 0; i < tempLeft.children.length; i++){
+                if (!(tempLeft.children[i].classList.contains(tempLeft.classList[2]))){
                     return false;
                 }
                 return true;
             }
         }
-        checkHerbivore = function(tempHerbivore){
-            for(let i = 0; i < tempHerbivore.children.length; i++){
-                if (tempHerbivore.children[i].classList[2] != "травоядное"){
+        checkRight = function(tempRight){
+            for(let i = 0; i < tempRight.children.length; i++){
+                if (!(tempRight.children[i].classList.contains(tempRight.classList[2]))){
                     return false;
                 }
                 return true;
@@ -358,13 +406,20 @@
             ev.preventDefault();
             let data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
-            if ((checkCarnivore(carnivore))&&(checkHerbivore(herbivore))&&(checkGame2list(game2list))){
-                scoreEl2.textContent = Number(scoreEl2.textContent) + 1;
-                game2list.innerHTML += carnivore.innerHTML;
-                game2list.innerHTML += herbivore.innerHTML;
+            if ((checkGame2list(game2list))){
+                if((checkLeft(left))&&(checkRight(right))){
+                    scoreEl2.textContent = Number(scoreEl2.textContent) + 1;
+                }else{
+                    scoreEl2.textContent = Number(scoreEl2.textContent) - 1;
+                }
+                
+                game2list.innerHTML += left.innerHTML;
+                game2list.innerHTML += right.innerHTML;
                 getRandomOrder1(game2list);
-                carnivore.innerHTML = "";
-                herbivore.innerHTML = "";
+                left.innerHTML = "";
+                right.innerHTML = "";
+                randomTask = getRandomInt(0,3);
+                getTask();
             }
         }
 
@@ -378,7 +433,7 @@
             scoreEl2.textContent = "0";
             win1.classList.toggle('current');
             fourth.classList.toggle('current');
-            timeValue = 60;
+            timeValue = 90;
             counter = setInterval(function () {
                 min = Math.floor(timeValue / 60);
                 sec = timeValue % 60;
@@ -425,31 +480,29 @@
         function getImages2() {
             for (let i = 0; i < game3list.children.length; i++){
                 game3list.children[i].classList.add(`image-${i+1}`);
-                if((i+1)==1){
-                    game3list.children[i].classList.add("animation-1");
-                    game3list.children[i].classList.add("заяц");
-                }else if((i+1)==2){
-                    game3list.children[i].classList.add("animation-2");
-                    game3list.children[i].classList.add("тигр");
-                }else if((i+1)==3){
-                    game3list.children[i].classList.add("animation-3");
-                    game3list.children[i].classList.add("корова");
-                }else if((i+1)==4){
-                    game3list.children[i].classList.add("animation-4");
-                    game3list.children[i].classList.add("волк");
-                }
+                game3list.children[i].classList.add(`animation-${i+1}`); 
             }
+            game3list.children[0].classList.add("кролик");
+            game3list.children[1].classList.add("тигр");
+            game3list.children[2].classList.add("корова");
+            game3list.children[3].classList.add("волк");
+            game3list.children[4].classList.add("олень");
+            game3list.children[5].classList.add("собака");
         }
         function getAnimal() {
-            let rand = getRandomInt(0,4);
+            let rand = getRandomInt(0,length);
             if(rand==0){
-                    return "заяц";
+                    return "кролик";
                 }else if(rand==1){
                     return "тигр";
                 }else if(rand==2){
                     return "корова";
                 }else if(rand==3){
                     return "волк";
+                }else if(rand==4){
+                    return "олень";
+                }else if(rand==5){
+                    return "собака";
                 }
         }
 
